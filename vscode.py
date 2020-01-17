@@ -20,7 +20,7 @@ class VSCode(dotbot.Plugin):
         self._log.info('Installing Visual Studio Code extensions...')
 
         for item in data:
-            if item in self.installed_extensions:
+            if item.casefold() in self.installed_extensions:
                 already_installed = already_installed + 1
                 continue
 
@@ -54,7 +54,7 @@ class VSCode(dotbot.Plugin):
 
         if return_code == 0:
             out = process.stdout.read().decode()
-            self.installed_extensions = out.split('\n')
+            self.installed_extensions = [ext.casefold() for ext in out.split('\n')]
         else:
             self._log.error(
                 'Failed to retrieve currently installed extensions!'
