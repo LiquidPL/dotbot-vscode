@@ -6,7 +6,7 @@ class VSCode(dotbot.Plugin):
     installed_extensions = None
 
     def __init__(self, context):
-        super(VSCode, self).__init__(self)
+        super().__init__(context)
 
     def can_handle(self, directive):
         return directive == self.directive
